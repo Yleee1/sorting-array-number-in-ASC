@@ -1,0 +1,43 @@
+public class sortnumber {
+    public static void main(String[] args) {
+        int[] test = {3,7,5,4,9,5};
+        int[] sortedArray = sort(test);
+        for (int num : sortedArray) {
+            System.out.print(num + " ");
+        }
+    }
+/*find smallest numebr in whole array*/
+    public static int findsmallestnumber(int[] x, int k) {
+        if (x.length == 0) {
+            throw new IllegalArgumentException("array is empty");
+        }
+        int smallestindex = k;
+        for (int i = k ; i < x.length; i++) {
+            if (x[smallestindex] > x[i]) {
+                smallestindex = i;
+            }
+        }
+        return smallestindex;
+    }
+/*swap the position of two number*/
+    public static void swap(int[] x, int a, int b) {
+        int temp = x[b];
+        x[b] = x[a];
+        x[a] = temp;
+    }
+
+    /*sort all numbers,we need to use recursion and recursion helper */
+    public static int[] sort(int[] x) {
+        sorthelper(x, 0);
+        return x;
+    }
+/*recursion helper, don't forget basecase*/
+    public static void sorthelper(int[] x, int k){
+        if (k == x.length){
+            return;
+        }
+        int smellestnumber=findsmallestnumber(x,k);
+        swap(x,k,smellestnumber);
+        sorthelper(x,k+1);
+    }
+}
